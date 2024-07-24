@@ -13,15 +13,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const product = await Product.create({
-      productName: "te1",
-      productNo: 1,
-      serialNo: 1,
-      lotNo: "a1",
-      productionDate: 1,
-      expirationDate: 1,
-    });
-    //const product = await Product.create(req.body);
+    const product = await Product.create(req.body);
     res.status(201).json({
       message: `Product succesfully created. Product ID: ${product.id}`,
     });
