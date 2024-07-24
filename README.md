@@ -10,3 +10,4 @@
   - [ ] Basic functions
 - [ ] Deploy
   - [ ] PM2
+  - [ ] Docker
