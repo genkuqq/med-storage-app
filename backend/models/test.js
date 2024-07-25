@@ -1,5 +1,5 @@
 const sequelize = require("../db");
-const { DataTypes, Model } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const Test = sequelize.define("Test", {
   id: {
     primaryKey: true,
@@ -13,7 +13,6 @@ const Test = sequelize.define("Test", {
   },
 });
 
-Test.sync({ alter: true });
-console.log("==> The table for the Test model was just (re)created!");
+Test.sync();
 
 module.exports = Test;

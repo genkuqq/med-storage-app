@@ -1,6 +1,5 @@
 const express = require("express");
 const productRoute = require("./routes/products");
-const models = require("./models"); //By default load index.js inside /app/models
 const sequelize = require("./db");
 
 require("dotenv").config();

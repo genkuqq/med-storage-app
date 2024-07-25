@@ -37,7 +37,6 @@ const Product = sequelize.define(
   { timestamps: false }
 );
 
-Product.sync({ alter: true });
-console.log("==> The table for the Product model was just (re)created!");
+Product.sync();
 
 module.exports = Product;

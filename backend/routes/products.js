@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/product");
+const CustomLogger = require("../handler/logger");
 
 router.get("/", async (req, res) => {
   try {
     const products = await Product.findAll();
     res.status(200).json(products);
+    CustomLogger("aldi");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
