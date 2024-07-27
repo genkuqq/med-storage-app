@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   try {
     const products = await Product.findAll();
     res.status(200).json(products);
-    CustomLogger("aldi");
+    CustomLogger("INFO", "aldi");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -1,6 +1,6 @@
 const Log = require("../models/log");
 
-async function CustomLogger(message) {
+async function CustomLogger(title, message) {
   const now = new Date();
   const formattedDate = now.toLocaleString("tr-TR", {
     day: "2-digit",
@@ -10,8 +10,8 @@ async function CustomLogger(message) {
     minute: "2-digit",
     second: "2-digit",
   });
-  console.log(`${formattedDate} | ${message} kek`);
-  await Log.create({ message: message, date: now });
+  console.log(`${formattedDate} | ${title} | ${message}`);
+  await Log.create({ title: title, message: message, date: now });
 }
 
 module.exports = CustomLogger;
