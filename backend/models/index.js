@@ -1,4 +1,4 @@
 const Product = require("./product");
-const Test = require("./test");
+const User = require("./user");
 const Log = require("./log");
-module.exports = { Product, Test, Log };
+module.exports = { Product, User, Log };
