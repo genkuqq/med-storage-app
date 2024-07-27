@@ -20,10 +20,9 @@ router.post("/", async (req, res) => {
     }
     const token = jwt.sign({ username, password }, process.env.JWT_TOKEN, {
       expiresIn: "1h",
-      algorithm: "RS256",
     });
     res.cookie("token", token, { httpOnly: true });
-    res.status(200);
+    res.status(200).json({ message: "200" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
