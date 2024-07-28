@@ -9,7 +9,7 @@ module.exports = {
     },
     {
       cwd: "./frontend",
-      name: "Netxjs App",
+      name: "frontend",
       script: "./frontend/node_modules/next/dist/bin/next",
       args: "start",
       env: {
