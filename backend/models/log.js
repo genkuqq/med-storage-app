@@ -19,6 +19,6 @@ const Log = sequelize.define(
   { timestamps: false }
 );
 
-Log.sync();
+Log.sync({ alter: true });
 
 module.exports = Log;

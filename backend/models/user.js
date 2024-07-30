@@ -28,6 +28,6 @@ User.beforeCreate(async (user) => {
   user.password = await bcrypt.hash(user.password, 10);
 });
 
-User.sync();
+User.sync({ alter: true });
 
 module.exports = User;
