@@ -15,5 +15,6 @@ namespace Med_Storage_App.Data
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Transfer> Transfer { get; set; }
     }
 }

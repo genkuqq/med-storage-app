@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Med_Storage_App.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20240831184312_InitDatabase")]
+    [Migration("20240831202852_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
@@ -54,9 +54,59 @@ namespace Med_Storage_App.Migrations
                     b.Property<int>("SerialNo")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TransferId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("TransferId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Med_Storage_App.Entities.Transfer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("QuantityReturned")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuantitySent")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TransferCreator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TransferDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TransferDestination")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TransferStatus")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Transfer");
+                });
+
+            modelBuilder.Entity("Med_Storage_App.Entities.Product", b =>
+                {
+                    b.HasOne("Med_Storage_App.Entities.Transfer", null)
+                        .WithMany("Products")
+                        .HasForeignKey("TransferId");
+                });
+
+            modelBuilder.Entity("Med_Storage_App.Entities.Transfer", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

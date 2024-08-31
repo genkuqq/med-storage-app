@@ -1,7 +1,5 @@
-﻿using System.Data.Common;
-using Med_Storage_App.Data;
+﻿using Med_Storage_App.Data;
 using Med_Storage_App.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
