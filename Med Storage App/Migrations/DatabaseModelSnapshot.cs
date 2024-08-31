@@ -34,11 +34,9 @@ namespace Med_Storage_App.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LotNo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("No")

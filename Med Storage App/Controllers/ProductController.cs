@@ -47,7 +47,6 @@ namespace Med_Storage_App.Controllers
             if (id != newProduct.Id) return BadRequest("Product ID mismatch");
             var oldProduct = await _db.Products.FindAsync(newProduct.Id);
             if (oldProduct == null) return NotFound("Product Not Found");
-
             oldProduct.Name = newProduct.Name;
             oldProduct.No = newProduct.No;
             oldProduct.SerialNo = newProduct.SerialNo;
@@ -55,7 +54,6 @@ namespace Med_Storage_App.Controllers
             oldProduct.Quantity = newProduct.Quantity;
             oldProduct.ProductionDate = newProduct.ProductionDate;
             oldProduct.ExpiratioDate = newProduct.ExpiratioDate;
-
             await _db.SaveChangesAsync();
             return Ok(oldProduct);
         }

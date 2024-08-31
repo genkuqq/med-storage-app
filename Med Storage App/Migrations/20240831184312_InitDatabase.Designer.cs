@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Med_Storage_App.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20240831172934_InitDatabase")]
+    [Migration("20240831184312_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
@@ -37,11 +37,9 @@ namespace Med_Storage_App.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LotNo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("No")
