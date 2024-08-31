@@ -17,19 +17,19 @@ namespace Med_Storage_App.Controllers
             _db = db;
         }
         [HttpGet]
-        public async Task<ActionResult<List<TransferDto>>> GetAllTransfers()
+        public async Task<ActionResult<List<Transfer>>> GetAllTransfers()
         {
             var transfers = await _db.Transfers
                 .Include(t => t.TransferItems)
                 .ThenInclude(ti => ti.Product)
-                .Select(t => new TransferDto
+                .Select(t => new Transfer
                 {
                     Id = t.Id,
                     CreatorName = t.CreatorName,
                     DestinationName = t.DestinationName,
                     TransferStatus = t.TransferStatus,
                     TransferDate = t.TransferDate,
-                    TransferItems = t.TransferItems.Select(ti => new TransferItemDto
+                    TransferItems = t.TransferItems.Select(ti => new TransferItem
                     {
                         ProductId = ti.ProductId,
                         Quantity = ti.Quantity
@@ -42,29 +42,17 @@ namespace Med_Storage_App.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TransferDto>> FindTransfer(int id)
+        public async Task<ActionResult<Transfer>> FindTransfer(int id)
         {
             var transfer = await _db.Transfers
                 .Include(t => t.TransferItems)
                 .ThenInclude(ti => ti.Product)
-                .Select(t => new TransferDto
-                {
-                    Id = t.Id,
-                    CreatorName = t.CreatorName,
-                    DestinationName = t.DestinationName,
-                    TransferStatus = t.TransferStatus,
-                    TransferDate = t.TransferDate,
-                    TransferItems = t.TransferItems.Select(ti => new TransferItemDto
-                    {
-                        ProductId = ti.ProductId,
-                        Quantity = ti.Quantity
-                    }).ToList()
-                })
                 .FirstOrDefaultAsync(t => t.Id == id);
 
             if (transfer == null)
+            {
                 return NotFound("Transfer Not Found");
-
+            }
             return Ok(transfer);
         }
 

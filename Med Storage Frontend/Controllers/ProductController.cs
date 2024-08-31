@@ -18,24 +18,24 @@ namespace Med_Storage_Frontend.Controllers
             _httpClient.BaseAddress = address;
         }
         [HttpGet]
-        public IActionResult Index()
+        public ActionResult Index()
         {
             HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress+"/product").Result;
             if (response != null)
             {
                 string data = response.Content.ReadAsStringAsync().Result;
-                List<ProductViewModel>? products = JsonConvert.DeserializeObject<List<ProductViewModel>>(data);
+                List<ProductModel>? products = JsonConvert.DeserializeObject<List<ProductModel>>(data);
                 return View(products);
             }
             return View();
         }
         [HttpGet]
-        public IActionResult Create()
+        public ActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(ProductViewModel productModel)
+        public ActionResult Create(ProductModel productModel)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace Med_Storage_Frontend.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Edit(int id)
+        public ActionResult Edit(int id)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace Med_Storage_Frontend.Controllers
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     string data = responseMessage.Content.ReadAsStringAsync().Result;
-                    ProductViewModel? product = JsonConvert.DeserializeObject<ProductViewModel>(data);
+                    ProductModel? product = JsonConvert.DeserializeObject<ProductModel>(data);
                     return View(product);
                 }
                 return View();
@@ -78,7 +78,7 @@ namespace Med_Storage_Frontend.Controllers
             
         }
         [HttpPost]
-        public IActionResult Edit(int id, ProductViewModel productModel)
+        public ActionResult Edit(int id, ProductModel productModel)
         {
             try
             {
@@ -104,14 +104,14 @@ namespace Med_Storage_Frontend.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Delete(int id)
+        public ActionResult Delete(int id)
         {
             try
             {
                 HttpResponseMessage responseMessage = _httpClient.GetAsync(_httpClient.BaseAddress + "/product/" + id).Result;
                 if (responseMessage.IsSuccessStatusCode) {
                     string data = responseMessage.Content.ReadAsStringAsync().Result;
-                    ProductViewModel? product = JsonConvert.DeserializeObject<ProductViewModel>(data);
+                    ProductModel? product = JsonConvert.DeserializeObject<ProductModel>(data);
                     return View(product);
                 }
                 return View();
@@ -123,7 +123,7 @@ namespace Med_Storage_Frontend.Controllers
             }
         }
         [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirm(int id) {
+        public ActionResult DeleteConfirm(int id) {
             try
             {
                 HttpResponseMessage responseMessage = _httpClient.DeleteAsync(_httpClient.BaseAddress + "/product/" + id).Result;
