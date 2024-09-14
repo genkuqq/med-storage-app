@@ -9,11 +9,11 @@
     }
     public class TransferModel
     {
-        public int Id { get; set; }
-        public string CreatorName { get; set; }
-        public string DestinationName { get; set; }
+        public int TransferId { get; set; }
+        public string TransferCreator { get; set; }
+        public string TransferDestination { get; set; }
         public TransferStatus TransferStatus { get; set; }
         public DateTime TransferDate { get; set; }
-        public List<TransferItemModel> TransferItems { get; set; } = new List<TransferItemModel>();
+        public List<ProductTransferModel> Products { get; set; } = new List<ProductTransferModel>();
     }
 }

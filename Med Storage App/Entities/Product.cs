@@ -9,6 +9,6 @@
         public string? LotNo { get; set; }
         public int Quantity { get; set; }
         public DateTime ProductionDate { get; set; }
-        public DateTime ExpiratioDate { get; set; }
+        public DateTime ExpirationDate { get; set; }
     }
 }

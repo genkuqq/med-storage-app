@@ -1,4 +1,4 @@
-@Med Storage App_HostAddress = https://localhost:7138
+@Med_Storage_App_HostAddress1 = https://localhost:7138
 @Med_Storage_App_HostAddress = http://localhost:5154
 
 GET {{Med_Storage_App_HostAddress}}/weatherforecast/
@@ -6,6 +6,74 @@ Accept: application/json
 
 ###
 
-GET {{Med Storage App_HostAddress}}/api/product
+GET {{Med_Storage_App_HostAddress1}}/api/product
+Accept: application/json
+
+###
+
+POST {{Med_Storage_App_HostAddress1}}/api/product
+Content-Type: application/json
+{
+    "name": "Product A",
+    "no": 1001,
+    "serialNo": 12345,
+    "lotNo": "A1B2C3",
+    "quantity": 50,
+    "productionDate": "2023-01-01",
+    "expirationDate": "2024-01-01"
+}
+
+###
+
+POST {{Med_Storage_App_HostAddress1}}/api/product
+Content-Type: application/json
+{
+    "name": "Product B",
+    "no": 1002,
+    "serialNo": 12345,
+    "lotNo": "A1B2C3",
+    "quantity": 150,
+    "productionDate": "2023-01-01",
+    "expirationDate": "2024-01-01"
+}
+
+###
+
+POST {{Med_Storage_App_HostAddress1}}/api/product
+Content-Type: application/json
+{
+    "name": "Product C",
+    "no": 1003,
+    "serialNo": 12345,
+    "lotNo": "A1B2C3",
+    "quantity": 25,
+    "productionDate": "2023-01-01",
+    "expirationDate": "2024-01-01"
+}
+
+###
+
+POST {{Med_Storage_App_HostAddress1}}/api/transfer
+Content-Type: application/json
+{
+    "transferCreator": "John Doe",
+    "transferDestination": "Warehouse B",
+    "transferDate": "2024-09-01T00:00:00",
+    "transferStatus": "Ongoing",
+    "products": [
+        {
+            "productId": 1,
+            "quantity": 10
+        },
+        {
+            "productId": 2,
+            "quantity": 5
+        },
+        {
+            "productId": 3,
+            "quantity": 20
+        }
+    ]
+}
 
 ###

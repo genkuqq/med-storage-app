@@ -9,13 +9,11 @@
     }
     public class Transfer
     {
-        public int Id { get; set; }
+        public int TransferId { get; set; }
         public string TransferCreator { get; set; }
         public string TransferDestination { get; set; }
         public DateTime TransferDate { get; set; }
-        public TransferStatus TransferStatus { get; set; } = TransferStatus.Ongoing;
-        public List<Product> Products { get; set; } = new List<Product>();
-        public int QuantitySent { get; set; }
-        public int QuantityReturned { get; set; }
+        public TransferStatus TransferStatus { get; set; }
+        public List<ProductTransfer> Products { get; set; } = new List<ProductTransfer>();
     }
 }

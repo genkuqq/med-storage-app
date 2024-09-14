@@ -60,6 +60,7 @@ namespace Med_Storage_Frontend.Controllers
                 {
                     string data = responseMessage.Content.ReadAsStringAsync().Result;
                     TransferModel? transfer = JsonConvert.DeserializeObject<TransferModel>(data);
+                    Console.WriteLine(transfer);
                     return View(transfer);
                 }
                 return View();

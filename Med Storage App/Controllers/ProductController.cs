@@ -51,7 +51,7 @@ namespace Med_Storage_App.Controllers
             oldProduct.LotNo = newProduct.LotNo;
             oldProduct.Quantity = newProduct.Quantity;
             oldProduct.ProductionDate = newProduct.ProductionDate;
-            oldProduct.ExpiratioDate = newProduct.ExpiratioDate;
+            oldProduct.ExpirationDate = newProduct.ExpirationDate;
             await _db.SaveChangesAsync();
             return Ok(oldProduct);
         }

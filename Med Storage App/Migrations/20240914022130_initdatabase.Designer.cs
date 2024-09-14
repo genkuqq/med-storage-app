@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Med_Storage_App.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20240831202852_InitDatabase")]
-    partial class InitDatabase
+    [Migration("20240914022130_initdatabase")]
+    partial class initdatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace Med_Storage_App.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("ExpiratioDate")
+                    b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LotNo")
@@ -54,29 +54,42 @@ namespace Med_Storage_App.Migrations
                     b.Property<int>("SerialNo")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TransferId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TransferId");
 
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Med_Storage_App.Entities.Transfer", b =>
+            modelBuilder.Entity("Med_Storage_App.Entities.ProductTransfer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductTransferId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductTransferId"));
 
-                    b.Property<int>("QuantityReturned")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("QuantitySent")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<int?>("TransferId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductTransferId");
+
+                    b.HasIndex("TransferId");
+
+                    b.ToTable("ProductTransfer");
+                });
+
+            modelBuilder.Entity("Med_Storage_App.Entities.Transfer", b =>
+                {
+                    b.Property<int>("TransferId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransferId"));
 
                     b.Property<string>("TransferCreator")
                         .IsRequired()
@@ -92,12 +105,12 @@ namespace Med_Storage_App.Migrations
                     b.Property<int>("TransferStatus")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("TransferId");
 
-                    b.ToTable("Transfer");
+                    b.ToTable("Transfers");
                 });
 
-            modelBuilder.Entity("Med_Storage_App.Entities.Product", b =>
+            modelBuilder.Entity("Med_Storage_App.Entities.ProductTransfer", b =>
                 {
                     b.HasOne("Med_Storage_App.Entities.Transfer", null)
                         .WithMany("Products")
